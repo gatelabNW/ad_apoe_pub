@@ -1,6 +1,8 @@
 # Peripheral immunomodulatory effects of Apolipoprotein E4 in Alzheimer’s disease
 [Gate Lab at Northwestern University](https://sites.northwestern.edu/gatelab/)
 
+![merged_about_fig](https://user-images.githubusercontent.com/91904251/221924963-917c5637-83b7-4087-88f3-8316afdba8a7.png)
+
 ## Abstract
 
 **Background:** Apolipoprotein E (APOE) is a lipid and cholesterol transport molecule known to influence Alzheimer's disease (AD) risk in an isoform-specific manner. In particular, the APOE E4 allele is the largest genetic risk factor for late-onset sporadic AD. Our recent findings uncovered activated, clonally expanded T cells in AD cerebrospinal fluid (CSF). This T cell phenotype occurred concomitantly with altered expression of APOE in CSF monocytes. Yet, whether APOE variants differentially affect peripheral immunity systems remains unknown.
@@ -22,4 +24,5 @@ Raw RNA+BCR+TCR .fastq files and gene expression matrices can be downloaded from
 
 For any comments/questions about the study please refer to the [Gate Lab website](https://sites.northwestern.edu/gatelab/) for contact information.
 
+![Feinberg-linear-RGB](https://user-images.githubusercontent.com/91904251/221924737-8ff64f66-bc81-4155-94a3-05121b393bfc.png)
 
