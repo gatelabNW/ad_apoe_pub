@@ -1,2 +1,6 @@
 # Random
 ._*
+.Rproj.user
+
+# renv
+renv/
