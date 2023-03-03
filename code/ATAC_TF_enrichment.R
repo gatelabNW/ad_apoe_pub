@@ -12,7 +12,8 @@
 # Summary: Run TF enrichment on DARs
 #
 #-------------------------------------------------------------------------------
-# Install packages
+# Initialization
+#-------------------------------------------------------------------------------
 
 # Load in libraries
 suppressMessages({
@@ -26,9 +27,9 @@ suppressMessages({
 })
 
 # Organize inputs
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-da_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/main/out_NP_02-06-2023/"
-output_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/tf_enrichment/out_NP_02-08-2023/"
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+da_base_dir <- "/path/to/da/results/"
+output_base_dir <- "/path/to/output/folder/"
 dir.create(output_base_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds
@@ -42,11 +43,12 @@ comparisons <- c("ADvsHC",
                  "44vs33_HC", "44vs33_AD",
                  "44vs34_HC", "44vs34_AD")
 
-# List type
+# List types
 types <- c("noncd4", "cd4")
 
 #-------------------------------------------------------------------------------
 # Run TF enrichment
+#-------------------------------------------------------------------------------
 
 # extract position frequency matrices for the motifs
 pwm <- getMatrixSet(

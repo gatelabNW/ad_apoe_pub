@@ -7,12 +7,13 @@
 # -----                                                                    -----
 # ------------------------------------------------------------------------------
 #
-# Date: 01-10-2022
+# Date: 01-10-2023
 # Written by: Natalie Piehl
 # Summary: Compare DA and DE over AD
 #
 #-------------------------------------------------------------------------------
-# Install packages
+# Initialization
+#-------------------------------------------------------------------------------
 
 # Load in libraries
 suppressMessages({
@@ -23,11 +24,11 @@ suppressMessages({
 })
 
 # Organize inputs
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/celltype_color_map.csv"
-broad_celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-ranges_path <- "/projects/b1169/projects/AD_APOE/data/ranges/full_ranges.rds"
-da_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/main/out_NP_02-06-2023/"
-output_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_de_comparison/ADvsHC_scatter/out_NP_02-08-2023_maxOver20/"
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+broad_celltype_colors_path <- "/path/to/broad_celltype_color_map.csv"
+ranges_path <- "/path/to/granges(seurat_object)"
+da_dir <- "/path/to/da/results/"
+output_base_dir <- "/path/to/output/folder/"
 dir.create(output_base_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds
@@ -38,10 +39,11 @@ lfc.thresh <- 0.25
 peak_type <- c("all")
 
 # Specify comparison
-comparison <- "ADvsHC_44"
+comparison <- "ADvsHC"
 
 #-------------------------------------------------------------------------------
 # Compare DEGs and DARs
+#-------------------------------------------------------------------------------
 
 # Define de dir
 if (comparison == "ADvsHC") {

@@ -7,12 +7,13 @@
 # -----                                                                    -----
 # ------------------------------------------------------------------------------
 #
-# Date: 01-30-2022
+# Date: 01-30-2023
 # Written by: Natalie Piehl
 # Summary: Run DA
 #
 #-------------------------------------------------------------------------------
 # Initialization
+#-------------------------------------------------------------------------------
 
 # Load in libraries
 suppressMessages({
@@ -20,9 +21,6 @@ suppressMessages({
   library("tidyverse")
   library("Seurat")
   library("Signac")
-  # library("JASPAR2020")
-  # library("TFBSTools")
-  # library("BSgenome.Hsapiens.UCSC.hg38")
   library("optparse")
 })
 
@@ -54,8 +52,8 @@ print(comparison)
 print(cell_type)
 
 # Organize inputs
-ranges_path <- "/projects/b1169/projects/AD_APOE/data/ranges/full_ranges.rds"
-output_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/main/out_NP_02-06-2023/"
+ranges_path <- "/path/to/granges(seurat_object)"
+output_base_dir <- "/path/to/output/folder"
 output_dir <- paste0(output_base_dir, comparison, "/")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
@@ -65,6 +63,7 @@ lfc.thresh <- 0.25
 
 #-------------------------------------------------------------------------------
 # Format data
+#-------------------------------------------------------------------------------
 
 # Load in seurat object
 if (cell_type == "CD4+_T_Cells") {
@@ -160,6 +159,7 @@ print(unique(s[["APOE_genotype"]])[,1])
 
 #-------------------------------------------------------------------------------
 # Run DA
+#-------------------------------------------------------------------------------
 
 # Define output csv path
 output_csv_path <- paste0(output_dir, cell_type, "_", comparison, "_dars.csv")
