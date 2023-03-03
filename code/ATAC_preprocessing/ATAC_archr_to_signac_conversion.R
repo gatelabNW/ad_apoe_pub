@@ -147,6 +147,9 @@ cd4_s@reductions$umap <- Seurat::CreateDimReducObject(
   assay="peaks"
 )
 
+# Run TF-IDF
+cd4_s <- RunTFIDF(cd4_s)
+
 # Export object
 saveRDS(cd4_s, file = paste0(output_dir, "cd4_s.rds"))
 
@@ -188,6 +191,9 @@ noncd4_s@reductions$umap <- Seurat::CreateDimReducObject(
   embeddings=umap_df,
   assay="peaks"
 )
+
+# Run TF-IDF
+noncd4_s <- RunTFIDF(noncd4_s)
 
 # Export object
 saveRDS(noncd4_s, file = paste0(output_dir, "noncd4_s.rds"))

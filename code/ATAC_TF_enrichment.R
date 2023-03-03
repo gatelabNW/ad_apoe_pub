@@ -35,15 +35,6 @@ dir.create(output_base_dir, showWarnings = FALSE, recursive = TRUE)
 padj.thresh <- 0.01
 lfc.thresh <- 0.25
 
-# Set core number for parallel model fitting
-# registerDoMC(cores = 2)
-# 
-# # Define comparison
-# comparison <- "ADvsHC_33"
-# 
-# # Define cell "type"
-# type <- "cd4"
-
 # List comparisons
 comparisons <- c("ADvsHC",
                  "ADvsHC_33", "ADvsHC_34", "ADvsHC_44",
@@ -57,6 +48,12 @@ types <- c("noncd4", "cd4")
 #-------------------------------------------------------------------------------
 # Run TF enrichment
 
+# extract position frequency matrices for the motifs
+pwm <- getMatrixSet(
+  x = JASPAR2020,
+  opts = list(species = 9606, all_versions = FALSE)
+)
+
 # Define celltypes
 color_map <- read.csv(celltype_colors_path)
 cell_types <- sapply(color_map$predicted.celltype.l2,
@@ -65,6 +62,11 @@ cell_types <- sapply(color_map$predicted.celltype.l2,
 for (type in types) {
   # Load Seurat object
   s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/", type, "_s_TFIDF.rds"))
+  
+  # add motif information
+  s <- AddMotifs(s, 
+                 genome = BSgenome.Hsapiens.UCSC.hg38,
+                 pfm = pwm)
   
   # Add broad cell types
   s@meta.data$broad_celltype <- mapvalues(s@meta.data$predictedGroupNew,
