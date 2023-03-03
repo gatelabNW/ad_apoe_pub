@@ -2,6 +2,7 @@
 ._*
 .Rproj.user
 .Rhistory
+.DS_store
 
 # renv
 renv/
