@@ -1,17 +1,11 @@
-# Peripheral immunomodulatory effects of Apolipoprotein E4 in Alzheimer’s disease
+# Apolipoprotein E genotype-dependent epigenetic immune dysregulation in Alzheimer’s disease
 [Gate Lab at Northwestern University](https://sites.northwestern.edu/gatelab/)
 
 ![merged_about_fig](https://user-images.githubusercontent.com/91904251/221924963-917c5637-83b7-4087-88f3-8316afdba8a7.png)
 
 ## Abstract
 
-**Background:** Apolipoprotein E (APOE) is a lipid and cholesterol transport molecule known to influence Alzheimer's disease (AD) risk in an isoform-specific manner. In particular, the APOE E4 allele is the largest genetic risk factor for late-onset sporadic AD. Our recent findings uncovered activated, clonally expanded T cells in AD cerebrospinal fluid (CSF). This T cell phenotype occurred concomitantly with altered expression of APOE in CSF monocytes. Yet, whether APOE variants differentially affect peripheral immunity systems remains unknown.
-
-**Method:** In this study, we performed targeted immune profiling using single-cell epigenetic and transcriptomic analysis of peripheral blood mononuclear cells (PBMC). We analyzed 55 age-matched healthy control (HC) and AD patients with equal distribution of APOE E3/E3, E3/E4, and E4/E4 genotypes.
-
-**Result:** We reveal dysregulation in monocytes and clonally expanded T cells that are distinct to AD patients carrying the APOE E4/E4 genotype. Additionally, we find APOE isoform-dependent chromatin accessibility differences that correspond to RNA expression changes.
-
-**Conclusion:** Cumulatively, these results uncover APOE isoform-dependent changes to peripheral immunity in AD.
+The apolipoprotein E (*APOE*) gene is a well-established risk factor for Alzheimer’s disease (AD). Much attention has been paid to the role of *APOE* in the brain immune response in AD. Yet, the relationship between various *APOE* genotypes and peripheral immunity in AD has not been studied.  Here, we used a combination of single cell sequencing strategies, including assay for transposase-accessible chromatin and RNA sequencing, to investigate the epigenetic and transcriptional influence of *APOE* genotypes on the AD immune system. We reveal *APOE* allele-dependent epigenetic changes that correspond to altered gene expression in peripheral monocytes and memory CD8 T cells in AD. We also identify differentially accessible chromatin regions in AD risk genes in peripheral immune cells. Finally, we provide an online data portal to explore gene expression in the AD immune system. Our findings provide novel insights into the complex relationship between *APOE* and the immune system in AD, and suggest potential therapeutic targets for this devastating disorder.
 
 ## About
 This repository contains code used to process and analyze scRNA+TCR+BCRseq and scATACseq data from the **Peripheral immunomodulatory effects of Apolipoprotein E4 in Alzheimer’s disease** study. 
