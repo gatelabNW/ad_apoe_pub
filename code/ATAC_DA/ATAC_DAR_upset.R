@@ -13,6 +13,7 @@
 #
 #-------------------------------------------------------------------------------
 # Initialization
+#-------------------------------------------------------------------------------
 
 # Load in libraries
 suppressMessages({
@@ -21,10 +22,10 @@ suppressMessages({
   library("UpSetR")
 })
 
-# Define paths
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-da_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/main/out_NP_02-06-2023/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/upset/out_NP_02-06-2023/"
+# Organize inputs
+da_base_dir <- "/path/to/da/results"
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+output_dir <- "/path/to/output/folder"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds
@@ -41,6 +42,7 @@ comparison <- comparisons[10]
 
 #------------------------------------------------------------------------------
 # Create Upset plot
+#-------------------------------------------------------------------------------
 
 # Initialize sig gene list
 sig_genes_ls <- list()
@@ -62,7 +64,6 @@ for (cell_type in cell_types) {
     da_peaks <- da_peaks[which(da_peaks$BH < padj.thresh & abs(da_peaks$avg_log2FC) > lfc.thresh),]
     
     # Extract DARs
-    # sig_genes <- unique(da_peaks$nearestGene)[!is.na(unique(da_peaks$nearestGene))]
     sig_genes <- da_peaks$sitename
 
     # Add sig genes to list

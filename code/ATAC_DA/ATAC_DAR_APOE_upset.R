@@ -9,7 +9,7 @@
 #
 # Date: 12-20-2022
 # Written by: Natalie Piehl
-# Summary: Make upset from DARs
+# Summary: Make APOE upset from DARs
 #
 #-------------------------------------------------------------------------------
 # Initialization
