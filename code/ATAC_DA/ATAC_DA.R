@@ -67,9 +67,9 @@ lfc.thresh <- 0.25
 
 # Load in seurat object
 if (cell_type == "CD4+_T_Cells") {
-  s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/cd4_s_TFIDF.rds"))
+  s <- readRDS("/path/to/cd4_seurat_object")
 } else {
-  s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/noncd4_s_TFIDF.rds"))
+  s <- readRDS("/path/to/noncd4_seurat_object")
 }
 
 # Add broad cell types

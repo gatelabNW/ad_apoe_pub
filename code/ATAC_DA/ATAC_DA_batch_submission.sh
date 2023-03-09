@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define path to cell type color map
-cell_type_colors_path="/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
+cell_type_colors_path="/path/to/celltype_color_map.csv"
 
 # Create array of cell types from metadata
 cell_types=()
