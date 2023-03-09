@@ -31,7 +31,7 @@ library(BSgenome.Hsapiens.UCSC.hg38)
 library(readxl)
 
 # Generate output directory
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/conversion/archr_to_signac_cleaned_and_investigated/out_NP_01-26-2023/"
+output_dir <- "/path/to/output/folder/"
 ifelse(!dir.exists(output_dir),
        dir.create(output_dir, showWarnings = FALSE, recursive = TRUE), FALSE)
 
@@ -42,14 +42,11 @@ set.seed(123)
 addArchRThreads(1)
 
 # Define old proj dir
-proj_dir <- "/projects/b1169/projects/AD_APOE/results/archr/project_main/"
-
-# Define annotations path
-annotations_path <- "/projects/b1169/projects/AD_APOE/results/archr/manual_outs/to_signac/2022_11_22_AR/UCSC.EnsDb.Hsapiens.v86.annotations.rds"
+proj_dir <- "/path/to/archr/proj/"
 
 # Define new proj dirs
-cd4_proj_dir <- "/projects/b1169/projects/AD_APOE/results/archr/project_cd4/"
-noncd4_proj_dir <- "/projects/b1169/projects/AD_APOE/results/archr/project_noncd4/"
+cd4_proj_dir <- "/path/to/cd4/archr/proj"
+noncd4_proj_dir <- "/path/to/noncd4/archr/proj"
 
 #-------------------------------------------------------------------------------
 # Save cd4 and noncd4 ArchR projects
@@ -102,15 +99,15 @@ subsetArchRProject(
 )
 proj
 
-# Load in annotations
-annotations <- readRDS(annotations_path)
+# Grab gene annotations
+annotations <- getAnnotation(reference = EnsDb.Hsapiens.v86, refversion = "hg38")
 
 #-------------------------------------------------------------------------------
 # Convert ArchR to Signac  (CD4)
 #-------------------------------------------------------------------------------
 
 # the cellranger outputs directory
-fragments_dir <- "/projects/b1042/Gate_Lab/AD_APOE/results/cellranger/atac/out_2022_08_11_NP/"
+fragments_dir <- "/path/to/cellranger/results/"
 
 # Reload CD4 ArchR project
 rm(proj)
@@ -132,8 +129,8 @@ cd4_s <- ArchR2Signac(
   refversion = "hg38",
   fragments_dir = fragments_dir,
   fragments_fromcellranger = "Yes",
-  pm = assay(cd4_pkm), # peak matrix from getPeakMatrix()
-  annotation = annotations # annotation from getAnnotation()
+  pm = assay(cd4_pkm),
+  annotation = annotations 
 )
 
 # Extract UMAP
@@ -177,8 +174,8 @@ noncd4_s <- ArchR2Signac(
   refversion = "hg38",
   fragments_dir = fragments_dir,
   fragments_fromcellranger = "Yes",
-  pm = assay(noncd4_pkm), # peak matrix from getPeakMatrix()
-  annotation = annotations # annotation from getAnnotation()
+  pm = assay(noncd4_pkm), 
+  annotation = annotations 
 )
 
 # Extract UMAP
