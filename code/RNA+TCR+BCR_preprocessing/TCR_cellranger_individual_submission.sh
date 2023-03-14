@@ -1,12 +1,12 @@
 #!/bin/bash
-#SBATCH --account b1042
-#SBATCH --partition genomics
+#SBATCH --account <gate_lab_allocation>
+#SBATCH --partition normal
 #SBATCH --job-name cellranger_tcr
 #SBATCH --nodes 1
 #SBATCH --ntasks-per-node 16
 #SBATCH --mem 128G
 #SBATCH --time 08:00:00
-#SBATCH --output /projects/b1042/Gate_Lab/AD_APOE/logs/cellranger/tcr/%x-%j.log
+#SBATCH --output /path/to/logs/folder/tcr/%x-%j.log
 #SBATCH --verbose
 
 # ${1} = id
@@ -28,6 +28,6 @@ cellranger vdj \
 --id ${1} \
 --fastqs ${2} \
 --chain "TR" \
---reference "/projects/b1169/nat/ncp_general/ref/refdata-cellranger-vdj-GRCh38-alts-ensembl-5.0.0" \
+--reference "/path/to/ref/refdata-cellranger-vdj-GRCh38-alts-ensembl-5.0.0" \
 --sample ${3} \
 --localcores 16

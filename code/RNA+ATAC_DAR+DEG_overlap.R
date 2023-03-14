@@ -47,13 +47,13 @@ comparison <- "ADvsHC"
 
 # Define de dir
 if (comparison == "ADvsHC") {
-  de_dir <- "/projects/b1169/projects/AD_APOE/results/de/diagnosis/out_NP_09-28-2022_covarSex+APOE/"
+  de_dir <- "/path/to/ADvsHC/DE/results/"
 } else if (comparison == "ADvsHC_33") {
-  de_dir <- "/projects/b1169/projects/AD_APOE/results/de/diagnosis_33/out_NP_09-28-2022_covarSex/"
+  de_dir <- "/path/to/ADvsHC_33/DE/results/"
 } else if (comparison == "ADvsHC_34") {
-  de_dir <- "/projects/b1169/projects/AD_APOE/results/de/diagnosis_34/out_NP_09-28-2022_covarSex/"
+  de_dir <- "/path/to/ADvsHC_34/DE/results/"
 } else if (comparison == "ADvsHC_44") {
-  de_dir <- "/projects/b1169/projects/AD_APOE/results/de/diagnosis_44/out_NP_09-28-2022_covarSex/"
+  de_dir <- "/path/to/ADvsHC_44/DE/results/"
 }
 
 # Define specific output dir

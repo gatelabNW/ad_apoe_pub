@@ -63,7 +63,7 @@ cell_types <- sapply(color_map$predicted.celltype.l2,
 
 for (type in types) {
   # Load Seurat object
-  s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/", type, "_s_TFIDF.rds"))
+  s <- readRDS("path/to/type/seurat/object/")
   
   # add motif information
   s <- AddMotifs(s, 

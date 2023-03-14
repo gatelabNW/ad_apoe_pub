@@ -28,8 +28,8 @@ suppressMessages({
 })
 
 # Initialize input parameters
-cellranger_dir <- "/projects/b1042/Gate_Lab/AD_APOE/results/cellranger/rna/out_2022_08_10_NP"
-output_dir <- "/projects/b1169/projects/AD_APOE/results/soupx/main/out_NP_08-16-2022/"
+cellranger_dir <- "/path/to/cellranger/results"
+output_dir <- "/path/to/output/folder/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 plot_dir <- paste0(output_dir, "qc/")
 dir.create(plot_dir, showWarnings = FALSE)

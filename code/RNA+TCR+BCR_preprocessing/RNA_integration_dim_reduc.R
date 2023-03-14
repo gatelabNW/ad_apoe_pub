@@ -22,8 +22,8 @@ suppressMessages({
 })
 
 # Initialize input parameters
-seurat_object <- "/projects/b1169/projects/AD_APOE/results/seurat/rna_preprocessing/out_NP_08-16-2022/s_qced"
-output_dir <- "/projects/b1169/projects/AD_APOE/results/seurat/clustering_no1086/out_NP_08-24-2022/"
+seurat_object <- "/path/to/RNA/seurat/object"
+output_dir <- "/path/to/output/folder/"
 pca_dir <- paste0(output_dir, "pca/")
 umap_dir <- paste0(output_dir, "umap/")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
