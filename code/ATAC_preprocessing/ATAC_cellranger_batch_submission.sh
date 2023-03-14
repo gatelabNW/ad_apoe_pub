@@ -14,8 +14,8 @@
 #-------------------------------------------------------------------------------
 
 # Specify paths
-fastq_dir="/projects/b1042/Gate_Lab/AD_APOE/data/scatac_raw_data/01.Raw_data"
-output_dir="/projects/b1042/Gate_Lab/AD_APOE/results/cellranger/atac/out_2022_08_11_NP"
+fastq_dir="/path/to/fastqs"
+output_dir="/path/to/output/folder"
 [ -d "$output_dir" ] || mkdir -p "$output_dir"
 
 # Create array of fastq_dir subdirectories

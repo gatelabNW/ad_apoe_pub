@@ -24,9 +24,9 @@ suppressMessages({
 })
 
 # Organize inputs
-celltype_colors_path <- "/projects/b1169/nat/als/resources/metadata/cluster-metadata.csv"
-seurat_object <- "/projects/b1169/projects/AD_APOE/results/seurat/supervised_clustering/out_NP_09-07-2022/s_sup_clustering"
-output_dir <- "/projects/b1169/projects/AD_APOE/results/de/diagnosis_34/out_NP_09-28-2022_covarSex/"
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+seurat_object <- "/path/to/RNA/seurat/object"
+output_dir <- "/path/to/output/folder/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds

@@ -29,10 +29,9 @@ suppressMessages({
 })
 
 # Initialize input parameters
-soupx_dir <- "/projects/b1169/projects/AD_APOE/results/soupx/main/out_NP_08-16-2022/"
-metadata_path <- "/projects/b1169/projects/AD_APOE/data/metadata/final_samples_AD_APOE.xlsx"
-output_dir <- "/projects/b1169/projects/AD_APOE/results/seurat/rna_preprocessing/out_NP_08-19-2022_no1086/"
-input_dir <- "/projects/b1169/projects/AD_APOE/results/seurat/rna_preprocessing/out_NP_08-16-2022/"
+soupx_dir <- "/path/to/soupx/results/"
+metadata_path <- "/path/to/metadata.xlsx"
+output_dir <- "/path/to/output/folder/"
 prefiltering_qc_plot_dir <- paste0(output_dir, "prefiltering_qc_plots/")
 postfiltering_qc_plot_dir <- paste0(output_dir, "postfiltering_qc_plots/")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
@@ -121,7 +120,6 @@ s
 
 # Save result
 save(s, file = paste0(output_dir, "s_rawmerge"))
-# load(paste0(input_dir, "s_rawmerge"))
 
 #-------------------------------------------------------------------------------
 # Add Metadata

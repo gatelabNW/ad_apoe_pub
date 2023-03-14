@@ -14,11 +14,11 @@
 #-------------------------------------------------------------------------------
 
 # Define and check directory containing GEX fastq files
-fastq_dir="/projects/b1042/Gate_Lab/AD_APOE/data/scrna_raw_data/01.RawData/"
+fastq_dir="/path/to/fastqs"
 [ -d "$fastq_dir" ] && echo "Directory to fastq files exists."
 
 # Define, make (if necessary), and navigate to output directory
-output_dir="/projects/b1042/Gate_Lab/AD_APOE/results/cellranger/rna/out_2022_08_10_NP"
+output_dir="/path/to/output/folder"
 [ -d "$output_dir" ] || mkdir "$output_dir"
 
 # Create array of fastq_dir subdirectories

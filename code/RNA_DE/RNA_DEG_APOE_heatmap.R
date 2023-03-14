@@ -23,8 +23,8 @@ suppressMessages({
 })
 
 # Organize inputs
-de_base_dir <- "/projects/b1169/projects/AD_APOE/results/de/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results/de/apoe_heatmaps_pbmcsRNA/out_NP_11-29-2022/"
+de_base_dir <- "/path/to/DE/results/"
+output_dir <- "/path/to/output/folder/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds
@@ -325,14 +325,12 @@ for (comparison in comparisons) {
   }
   
   # Add genes to list
-  # deg_list[[comparison]] <- unique(deg_vector)
   deg_list[[comparison]] <- deg_vector
 }
 ad_deg_list <- deg_list
 
 for (comparison in comparisons) {
   # Define de dir
-  # comparison <- comparisons[1]
   de_dir <- paste0(de_base_dir, comparison, "_hc", "/out_NP_11-10-2022_covarSex/")
   
   # Make list of csvs
@@ -365,7 +363,6 @@ for (comparison in comparisons) {
   }
   
   # Add genes to list
-  # deg_list[[comparison]] <- unique(deg_vector)
   deg_list[[comparison]] <- deg_vector
 }
 hc_deg_list <- deg_list
@@ -405,8 +402,7 @@ celltype_list <- sapply(list.files(paste0(de_base_dir, "diagnosis_33/out_NP_09-2
 
 for (comparison in comparisons) {
   # Define de dir
-  # comparison <- comparisons[1]
-  de_dir <- "/projects/b1169/projects/AD_APOE/results/tcr/clonality/out_2022_12_14_AR/"
+  de_dir <- "/path/to/tcr/DE/results/"
 
   # Initialize deg vector
   deg_vector <- c()
@@ -435,8 +431,7 @@ ad_deg_list <- deg_list
 cell_types <- c()
 for (comparison in comparisons) {
   # Define de dir
-  # comparison <- comparisons[1]
-  de_dir <- "/projects/b1169/projects/AD_APOE/results/tcr/clonality/out_2022_12_14_AR/"
+  de_dir <- "/path/to/tcr/DE/results/"
   
   # Initialize deg vector
   deg_vector <- c()
@@ -500,8 +495,7 @@ celltype_list <- sapply(list.files(paste0(de_base_dir, "diagnosis_33/out_NP_09-2
 
 for (comparison in comparisons) {
   # Define de dir
-  # comparison <- comparisons[1]
-  de_dir <- "/projects/b1169/projects/AD_APOE/results/tcr/clonality/out_2022_12_14_AR/"
+  de_dir <- "/path/to/tcr/DE/results/"
   
   # Initialize deg vector
   deg_vector <- c()
@@ -530,8 +524,7 @@ ad_deg_list <- deg_list
 cell_types <- c()
 for (comparison in comparisons) {
   # Define de dir
-  # comparison <- comparisons[1]
-  de_dir <- "/projects/b1169/projects/AD_APOE/results/tcr/clonality/out_2022_12_14_AR/"
+  de_dir <- "/path/to/tcr/DE/results/"
   
   # Initialize deg vector
   deg_vector <- c()
