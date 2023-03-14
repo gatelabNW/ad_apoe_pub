@@ -1,0 +1,151 @@
+# ------------------------------------------------------------------------------
+# -----                                                                    -----
+# -----                        AD APOE Project                             -----
+# -----                                                                    -----
+# -----                           Gate Lab                                 -----
+# -----                     Northwestern University                        -----
+# -----                                                                    -----
+# ------------------------------------------------------------------------------
+#
+# Date: 09-19-2022
+# Written by: Natalie Piehl
+# Summary: Run DE between APOE genotypes
+#
+#-------------------------------------------------------------------------------
+# Initialization
+
+# Load in libraries
+suppressMessages({
+  library("plyr")
+  library("tidyverse")
+  library("Seurat")
+  library("UpSetR")
+})
+
+# Organize inputs
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+seurat_object <- "/path/to/RNA/seurat/object"
+output_dir <- "/path/to/output/dir/"
+dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
+
+# Define thresholds
+padj.thresh <- 0.01
+lfc.thresh <- 0.25
+
+# Load Seurat object
+load(seurat_object)
+
+# Specify diagnosis and apoe comparisons
+diagnosis <- "Alzheimers_Disease"
+apoe_1 <- "E3/E4"
+apoe_2 <- "E3/E3"
+
+#-------------------------------------------------------------------------------
+# Run DE on AD vs HC
+
+# Run standard normalization
+DefaultAssay(object = s) <- "RNA"
+s <- NormalizeData(s, verbose = FALSE)
+
+# Set Ident to APOE genotype
+s <- SetIdent(s, value = "APOE_genotype")
+print(table(s[["APOE_genotype"]]))
+
+# Subset for AD
+s <- subset(s, Diagnosis == diagnosis)
+
+# Make apoe tag for file naming
+apoe <- paste0(gsub("/", "", apoe_1), "vs", gsub("/", "", apoe_1))
+
+run_de <- function(cell_type) {
+  print(cell_type)
+  cell_type_label <- gsub("/", "", cell_type)
+  cell_type_label <- gsub(" ", "_", cell_type_label)
+
+  tryCatch({
+    # Find DEGs b/w MCI/AD and HC
+    degs <-FindMarkers(object = subset(s, predicted.celltype.l2 == cell_type),
+                       ident.1 = apoe_1,
+                       ident.2 = apoe_2,
+                       latent.vars = c("Sex"),
+                       test.use = "MAST",
+                       logfc.threshold = -Inf,
+                       min.pct = 0.1,
+                       assay = "RNA"
+    )
+    
+    # Remove ribosomal, mitochondrial, and HLA genes
+    degs <- degs[-grep(pattern = "^RPS|^RPL|^MT-|^HLA-", x = rownames(degs)),]
+    
+    # Run Benjamini-Hochberg adjustment
+    degs$BH <- p.adjust(degs$p_val, method = "BH")
+    
+    # Write out results
+    write.csv(degs, paste0(output_dir, cell_type_label, "_", apoe, "_", diagnosis, "_degs.csv"))
+    
+    # Create volcano plot
+    volcano_plot(degs, title = paste0(diagnosis, " ", apoe, " in ", cell_type),
+                 file = paste0(output_dir, cell_type_label, "_", apoe, "_", diagnosis, "_volcano.pdf"),
+                 padj.thresh = padj.thresh, lfc.thresh = lfc.thresh)
+  }, error = function(e) {
+    message(paste0("Something went wrong with ", cell_type))
+    NULL
+  })
+}
+
+# # Run DE on all celltypes
+cell_types <- unique(s[["predicted.celltype.l2"]])[,1]
+lapply(cell_types, run_de)
+
+#------------------------------------------------------------------------------
+# Create Upset plot
+sig_genes_ls <- list()
+
+# Create list with sig genes for each cell type
+for (cell_type in cell_types) {
+  print(cell_type)
+  cell_type_label <- gsub("/", "", cell_type)
+  cell_type_label <- gsub(" ", "_", cell_type_label)
+  
+  # Load in degs
+  tryCatch({
+    degs <- read.csv(paste0(output_dir, cell_type_label, "_", apoe, "_", diagnosis, "_degs.csv"))
+    
+    # Identify sig genes
+    sig_genes <- degs[which(degs$BH < padj.thresh & abs(degs$avg_log2FC) > lfc.thresh),]
+    print(head(sig_genes))
+    
+    # Add sig genes to list
+    sig_genes_ls[[cell_type]] <- sig_genes$X
+  }, error = function(e) {
+    NULL
+  })
+  
+}
+
+sig_genes_ls
+sig_genes_ls <- sig_genes_ls[ lapply(sig_genes_ls, length) > 0 ]
+
+# Find number of genes in each set
+num_degs <- data.frame(matrix(ncol = 2, nrow = 0))
+for (key in names(sig_genes_ls)) {
+  num_degs <- rbind(num_degs, data.frame(key, length(sig_genes_ls[[key]])))
+}
+
+# Get colors
+celltype_colors <- read.csv(celltype_colors_path)
+
+# Get order of sets for coloring
+num_degs <- num_degs[order(-num_degs[, 2]),]
+celltype_colors <- celltype_colors[match(num_degs[,1], celltype_colors$predicted.celltype.l2),]
+celltype_colors <- celltype_colors[ which(celltype_colors$predicted.celltype.l2 %in% names(sig_genes_ls)),]
+
+# Create upset plot and export
+pdf(file = paste0(output_dir, apoe, "_", diagnosis, "_upset_celltype.pdf"))
+upset(
+  fromList(sig_genes_ls),
+  nsets = length(sig_genes_ls),
+  order.by = "freq",
+  sets.bar.color = celltype_colors$new_color
+)
+dev.off()
