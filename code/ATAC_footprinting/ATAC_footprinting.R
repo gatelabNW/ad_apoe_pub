@@ -12,7 +12,8 @@
 # Summary: Run Footprinting
 #
 #-------------------------------------------------------------------------------
-# Install packages
+# Initialization
+#-------------------------------------------------------------------------------
 
 # Load in libraries
 suppressMessages({
@@ -52,17 +53,18 @@ motif <- opt$motif
 print(motif)
 
 # Organize inputs
-output_dir <- paste0("/projects/b1169/projects/AD_APOE/results_atac/footprinting/batch/out_NP_02-09-2023/", cell_type, "/")
+output_dir <- paste0("/path/to/output/folder/", cell_type, "/")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 #-------------------------------------------------------------------------------
 # Run footprinting
+#-------------------------------------------------------------------------------
 
 # Load in seurat object
 if (cell_type == "CD4+_T_Cells") {
-  s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/cd4_s_TFIDF.rds"))
+  s <- readRDS("/path/to/cd4_seurat_object")
 } else {
-  s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/noncd4_s_TFIDF.rds"))
+  s <- readRDS("/path/to/noncd4_seurat_object")
 }
 s
 

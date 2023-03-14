@@ -9,10 +9,11 @@
 #
 # Date: 01-11-2022
 # Written by: Natalie Piehl
-# Summary: Look at peak type composition of diagnosis DARs
+# Summary: Look at peak type composition of DARs
 #
 #-------------------------------------------------------------------------------
 # Initialization
+#-------------------------------------------------------------------------------
 
 # Load in libraries
 suppressMessages({
@@ -21,9 +22,9 @@ suppressMessages({
 })
 
 # Organize inputs
-dar_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/main/out_NP_02-06-2023/"
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/composition/out_NP_02-08-2023/"
+dar_dir <- "/path/to/da/results"
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+output_dir <- "/path/to/output/folder"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds
@@ -31,10 +32,11 @@ padj.thresh <- 0.01
 lfc.thresh <- 0.25
 
 # Define comparison
-comparison <- "44vs34_AD"
+comparison <- "ADvsHC"
 
 #------------------------------------------------------------------------------
 # Make bar plot of composition
+#-------------------------------------------------------------------------------
 
 # Get cell types
 celltype_colors <- read.csv(celltype_colors_path)

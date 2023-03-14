@@ -12,7 +12,8 @@
 # Summary: Make bar plot of peak type composition
 #
 #-------------------------------------------------------------------------------
-# Install packages
+# Initialization
+#-------------------------------------------------------------------------------
 
 # Load in libraries
 suppressMessages({
@@ -21,9 +22,9 @@ suppressMessages({
 })
 
 # Organize inputs
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-da_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/main/out_NP_02-06-2023/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/composition/out_NP_02-08-2023/"
+da_base_dir <- "/path/to/da/results"
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+output_dir <- "/path/to/output/folder"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds
@@ -39,14 +40,12 @@ comparisons <- c("ADvsHC",
 
 #-------------------------------------------------------------------------------
 # Run TF enrichment
+#-------------------------------------------------------------------------------
 
 # Define celltypes
 color_map <- read.csv(celltype_colors_path)
 cell_types <- sapply(color_map$predicted.celltype.l2,
                      function(x) {gsub(" ", "_", x)}) %>% as.vector
-
-# # Remove platelets cause not enough cells and really skews one of plots
-# cell_types <- cell_types[-28]
 
 # Define output list
 res_list <- list()
