@@ -1,0 +1,200 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+Demographics table for AD-APOE project
+
+---
+title: "demographics-table"
+output:
+  pdf_document: default
+html_document: default
+word_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = "path/to/project/directory/")
+
+library(finalfit)
+library(dplyr)
+library(flextable)
+library(plyr)
+library(readxl)
+library(tinytex)
+library(webshot)
+library(stringr)
+
+```
+
+
+```{r}
+# Load sample biomarker data
+samples <- read.csv("path/to/metadata/")
+                                                         
+```
+
+
+
+```{r}
+print("filler
+      ")
+```
+
+
+```{r}
+# Define variables
+explanatory <- c("Sex",
+                 "Age",
+                 "Race",
+                 "APOE_Genotype",
+                 "CSF_pTau181_pg_mL",
+                 "CSF_total_Tau_pg_mL",
+                 "CSF_AB42_pg_mL",
+                 "CSF_AB40_pg_mL",
+                 "CSF_AB42_AB40_ratio",
+                 "A42_totalTau",
+                 "A40_totalTau",
+                 "A4042_totalTau",
+                 "A42_pTau",
+                 "A40_pTau",
+                 "A4042_pTau",
+                 "Plasma_pTau181_pg_mL"
+                 )
+
+dependent <- "Diagnosis"
+
+contrast <- "median"
+table <- samples %>%
+            summary_factorlist(dependent,
+                               explanatory,
+                               cont = contrast,
+                               p = TRUE
+                               ) 
+
+
+# Rename columns of interest
+explanatory_formatted <- c("Sex, n (%)",
+                           "Age",
+                           "Race, n (%)",
+                           "APOE Genotype",
+                           "CSF pTau181",
+                           "CSF Total Tau",
+                           "CSF Aβ42",
+                           "CSF Aβ40",
+                           "CSF Aβ42/Aβ40",
+                           "Aβ42/Total Tau",
+                           "Aβ40/Total Tau",
+                           "Aβ42+Aβ40/Total Tau",
+                           "Aβ42/pTau",
+                           "Aβ40/pTau",
+                           "Aβ42+Aβ40/pTau",
+                           "Plasma pTau181"
+)
+
+table$label <- mapvalues(table$label,
+                         from = explanatory,
+                         to = explanatory_formatted)
+
+# Count number of entries reported
+na_count <-sapply(samples, function(y) sum(length(which(!is.na(y)))))
+count_by_diag <- table(samples$Diagnosis, !is.na(samples$CSF_AB42_pg_mL))
+count_plasma_ptau <- table(samples$Diagnosis, !is.na(samples$Plasma_pTau181_pg_mL))
+# Add group rows
+table[seq(2,nrow(table)+1),] <- table[seq(1,nrow(table)),]
+table[1,] <- c("Demographics", "", "n = 26", "n = 30", "")
+# heading apoe
+table[seq(9,nrow(table)+1),] <- table[seq(8,nrow(table)),]
+table[8,] <- c("APOE Genotype", "", "n = 26", "n = 30", "")
+# CSF biomarkers
+table[seq(13,nrow(table)+1),] <- table[seq(12,nrow(table)),]
+table[12,] <- c("CSF Biomarkers", "", "n = 12", "n = 10", "")
+# CSF biomarkers ratios
+table[seq(18,nrow(table)+1),] <- table[seq(17,nrow(table)),]
+table[17,] <- c("CSF Biomarker Ratios", "", "n = 12", "n = 10", "")
+# Plasma biomarkers
+table[seq(26,nrow(table)+1),] <- table[seq(25,nrow(table)),]
+table[25,] <- c("Plasma Biomarkers", "", "n = 23", "n = 27", "")
+
+# Generate flextable
+flex <- flextable(table) %>%
+    autofit() %>%
+    flextable::align(align = "left", part = "all")  %>%
+    set_header_labels(
+      label = "", 
+      levels = "") %>%
+    # width(j = c(1,2,3,4,5), width = c(2.3,2,1,1,0.8)) %>%
+    fontsize(size = 10, part = "all") %>%
+    bold(i = c(1,8,12,17,25), j = c(1,3,4), bold = TRUE, part = "body")
+
+flex
+
+#Export table
+save_as_image(flex, "outs/demographics_table.pdf")
+```
+
+```{r}
+# Table 2
+# Generate means for diagnosis group split by APOE genotype
+
+dependent2 <- "Diagnosis_APOE_genotype"
+explanatory2 <- c("Sex",
+                 "Age",
+                 "Race",
+                 "CSF_pTau181_pg_mL",
+                 "CSF_total_Tau_pg_mL",
+                 "A4042_totalTau",
+                 "Plasma_pTau181_pg_mL"
+                 )
+
+table2 <- samples %>%
+            summary_factorlist(dependent2,
+                               explanatory2,
+                               cont = contrast,
+                               p = TRUE
+                               ) 
+# Rename columns of interest
+explanatory_formatted2 <- c("Sex, n (%)",
+                           "Age",
+                           "Race, n (%)",
+                           "CSF pTau181",
+                           "CSF Total Tau",
+                           "CSF Aβ42+Aβ40/Total Tau",
+                           "Plasma pTau181"
+)
+
+table2$label <- mapvalues(table2$label,
+                         from = explanatory2,
+                         to = explanatory_formatted2)
+
+# Count number of entries reported
+na_count <-sapply(samples, function(y) sum(length(which(!is.na(y)))))
+count_by_diag_geno <- table(samples$Diagnosis_APOE_genotype, !is.na(samples$CSF_AB42_pg_mL))
+count_plasma_ptau2 <- table(samples$Diagnosis_APOE_genotype, !is.na(samples$Plasma_pTau181_pg_mL))
+# Add group rows
+table2[seq(2,nrow(table2)+1),] <- table2[seq(1,nrow(table2)),]
+table2[1,] <- c("Demographics", "", "n = 9", "n = 10", "n = 7", "n = 10", "n = 11", "n = 9",  "")
+# CSF Biomarkers
+table2[seq(9,nrow(table2)+1),] <- table2[seq(8,nrow(table2)),]
+table2[8,] <- c("CSF Biomarkers", "", "n = 3", "n = 4", "n = 5", "n = 2", "n = 5", "n = 3",  "")
+# Plasma Biomarkers
+table2[seq(13,nrow(table2)+1),] <- table2[seq(12,nrow(table2)),]
+table2[12,] <- c("Plasma Biomarkers", "", "n = 8", "n = 8", "n = 7", "n = 10", "n = 9", "n = 8",  "")
+# Generate flextable
+flex <- flextable(table2) %>%
+    autofit() %>%
+    flextable::align(align = "left", part = "all")  %>%
+    set_header_labels(
+      label = "", 
+      levels = "") %>%
+    # width(j = c(1,2,3,4,5), width = c(2.3,2,1,1,0.8)) %>%
+    fontsize(size = 10, part = "all") %>%
+    bold(i = c(1,8,12), j = c(1,3:8), bold = TRUE, part = "body")
+
+flex
+
+#Export table
+save_as_image(flex, "outs/demographics_table_disease_genotype.pdf")
+```
+
