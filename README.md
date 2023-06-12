@@ -28,14 +28,13 @@ All scripts in `code` folder.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `ATAC_DA/ATAC_LR+DESeq2_overlap_barplot.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_preprocessing/ATAC_DAR_peak_type_composition.R` + `ATAC_preprocessing/ATAC_DAR_up_down_composition.R`         
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: `RNA_DE/RNA_MAST+edgeR_overlap_barplot.R`   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E: ADvsHC DEG upset   
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: DAR + DEG overlap par plot + upset   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E: `RNA_DE/RNA_MAST+edgeR_overlap.R`   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_barplot_upset.R`   
 
 ### Fig3: _______
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap.R`  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap_scatter.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_TF_analysis/ATAC_TF_enrichment_scatter.R`  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: maxATAC NFKB2 bar plot    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: maxATAC NFKB2 coverage plots   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C+D: `ATAC_TF_analysis/maxATAC/ATAC_ADvsHC_Monocytes_NFKB2.R`    
 
 ### Fig4: _______
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: Cicero promoter connections heatmap    
@@ -44,15 +43,14 @@ All scripts in `code` folder.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: cre-linked gene + DEG overlap cd8 tems  
 
 ### Fig5: _______
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: ADvsHC in APOE upset + heatmap DARs    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: ADvsHC in APOE upset + heatmap DEGs  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: DAR + DEG overlap heatmap  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap.R`     
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A+B: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_ADvsHC_in_APOE_heatmap_upset.R`    
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_ADvsHC_heatmap.R`  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap_scatter.R`     
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E+F: Chromatin tracks  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G: `ATAC_TF_analysis/ATAC_TF_enrichment_scatter.R`   
 
 ### Fig6: _______
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap.R`       
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap_scatter.R`       
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: Chromatin tracks  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: AD risk gene heatmap   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: Tracks and heatmaps for AD risk genes   
@@ -72,7 +70,7 @@ All scripts in `code` folder.
 
 ### SuppFig3: _______
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `ATAC_TF_analysis/ATAC_footprinting.R`  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: maxATAC whole genome  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_TF_analysis/maxATAC/ATAC_ADvsHC_Monocytes_32bp_barplot_wholegenome.R`  
 
 ### SuppFig4: _______
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: ADvsHC DAR AD risk gene heatmap  
