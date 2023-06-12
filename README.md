@@ -18,5 +18,72 @@ Raw RNA+BCR+TCR .fastq files and gene expression matrices can be downloaded from
 
 For any comments/questions about the study please refer to the [Gate Lab website](https://sites.northwestern.edu/gatelab/) for contact information.
 
+## Figure Outline
+
+### Fig1: _______
+B:  
+
+### Fig2: _______
+A:  
+B:  
+C:  
+D:  
+E:  
+F:  
+
+### Fig3: _______
+A:  
+B:  
+C:  
+D:  
+
+### Fig4: _______
+A:  
+B:  
+C:  
+D:  
+
+### Fig5: _______
+A:  
+B:  
+C:  
+D:  
+
+### Fig6: _______
+A:  
+B:  
+C:  
+D:  
+
+### SuppFig1: _______
+A:  
+B:  
+C:  
+D:  
+
+### SuppFig2: _______
+A:  
+B:  
+C:  
+D:  
+
+### SuppFig3: _______
+A:  
+B:  
+C:  
+D:  
+
+### SuppFig4: _______
+A:  
+B:  
+C:  
+D:  
+
+### SuppFig5: _______
+A:  
+B:  
+C:  
+D:  
+
 ![Feinberg-linear-RGB](https://user-images.githubusercontent.com/91904251/221924737-8ff64f66-bc81-4155-94a3-05121b393bfc.png)
 
