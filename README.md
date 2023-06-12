@@ -25,9 +25,9 @@ All scripts in `code` folder.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_preprocessing/2-ATAC_archr_umap.R`  
 
 ### Fig2: _______
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: LR + DESeq2 overlap bar plot + ADvsHC DAR upset  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `ATAC_DA/ATAC_LR+DESeq2_overlap_barplot.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_preprocessing/ATAC_DAR_peak_type_composition.R` + `ATAC_preprocessing/ATAC_DAR_up_down_composition.R`         
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: MAST + edgeR overlap bar plot   
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: `RNA_DE/RNA_MAST+edgeR_overlap_barplot.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E: ADvsHC DEG upset   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: DAR + DEG overlap par plot + upset   
 
