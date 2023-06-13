@@ -1,7 +1,7 @@
 # Epigenetic dysregulation in Alzheimer’s disease peripheral immunity
 [Gate Lab at Northwestern University](https://sites.northwestern.edu/gatelab/)
 
-![merged_about_fig](https://user-images.githubusercontent.com/91904251/221924963-917c5637-83b7-4087-88f3-8316afdba8a7.png)
+![updated_schematic](https://github.com/gatelabNW/ad_apoe_pub/assets/91904251/efdaa203-0094-4092-a30a-d107aaf56c55)
 
 ## Abstract
 
