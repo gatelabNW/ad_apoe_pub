@@ -75,7 +75,7 @@ All scripts in `code` folder.
 
 #### SuppFig4: APOE genotype-dependent dysregulation of clonally expanded T cells in AD.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `ATAC_DA/ATAC_DAR_AD_risk_gene_overlap.R` (coverage plots merged with heatmaps in Illustrator)  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `TCR_analysis/tcr-clonal_DE_ADvsHC_within_APOE_genotype.R` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `TCR_analysis/tcr-clonal_DE_ADvsHC_within_APOE_genotype.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap_scatter.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: `Misc/ATAC_coverage_plot.R`  
 
