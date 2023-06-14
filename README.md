@@ -21,22 +21,22 @@ For any comments/questions about the study please refer to the [Gate Lab website
 ## Figure Outline
 All scripts in `code` folder.
 
-### Fig1: _______
+#### Fig1: The peripheral immune system has more open chromatin in AD.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_preprocessing/2-ATAC_archr_umap.R`  
 
-### Fig2: _______
+#### Fig2: Epigenetic dysregulation in AD peripheral immunity and concordance with differential gene expression.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `ATAC_DA/ATAC_LR+DESeq2_overlap_barplot.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_preprocessing/ATAC_DAR_peak_type_composition.R` + `ATAC_preprocessing/ATAC_DAR_up_down_composition.R`         
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: `RNA_DE/RNA_MAST+edgeR_overlap_barplot.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E: `RNA_DE/RNA_MAST+edgeR_overlap.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_barplot_upset.R`   
 
-### Fig3: _______
+### Fig3: Epigenetic changes to NF-κB signaling molecules in peripheral AD monocytes. 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap_scatter.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_TF_analysis/ATAC_TF_enrichment_scatter.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C-D: `ATAC_TF_analysis/maxATAC/ATAC_ADvsHC_Monocytes_NFKB2.R`    
 
-### Fig4: _______
+#### Fig4: Cis-regulatory sequences correlate with quantity of transcription of select CD8 T cell and monocyte genes.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA+ATAC_analysis/RNA+ATAC_correlation/ATAC_cicero_summary.R`    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `RNA+ATAC_analysis/RNA+ATAC_correlation/RNA+ATAC_correlation_summary.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: `RNA+ATAC_analysis/RNA+ATAC_correlation/RNA+ATAC_cre-linked-gene+DEG_overlap.R`  
@@ -44,42 +44,42 @@ All scripts in `code` folder.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E: `RNA+ATAC_analysis/RNA+ATAC_correlation/RNA+ATAC_cre-linked-gene+DEG_overlap.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: `RNA+ATAC_analysis/RNA+ATAC_correlation/RNA+ATAC_CXCR3_correlation.R`  
 
-### Fig5: _______
+#### Fig5: APOE genotype-dependent innate immune dysregulation in AD.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A-B: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_ADvsHC_in_APOE_heatmap_upset.R`    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_ADvsHC_heatmap.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap_scatter.R`     
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-F: `Misc/ATAC_coverage_plot.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G: `ATAC_TF_analysis/ATAC_TF_enrichment_scatter.R`   
 
-### Fig6: _______
+#### Fig6: Epigenetic dysregulation of AD risk genes in the peripheral immune system.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA+ATAC_analysis/RNA+ATAC_DAR+DEG_overlap_scatter.R`       
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `Misc/ATAC_coverage_plot.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C-F: `ATAC_DA/ATAC_DAR_AD_risk_gene_overlap.R` (coverage plots merged with heatmaps in Illustrator)   
 
-### SuppFig1: _______
+#### SuppFig1: Quality control metrics for scATACseq data.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `demographics/demographic_plots_optimized.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B-E: `ATAC_preprocessing/1-ATAC_archr_preprocessing.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: `ATAC_preprocessing/3-ATAC_archr_label_transfer.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G: `ATAC_preprocessing/1-ATAC_archr_preprocessing.R`    
 
-### SuppFig2: _______
+#### SuppFig2: Quality control metrics for scATACseq data.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA_preprocessing/4-RNA_celltype_annotation.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B-D: `RNA_preprocessing/2-RNA_seurat_preprocessing.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E: `RNA_preprocessing/1-RNA_soupx.R` (visual made with Prism)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F-G: `RNA_preprocessing/4-RNA_celltype_annotation.R`    
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;H: `ATAC_preprocessing/2-ATAC_archr_umap.R`    
 
-### SuppFig3: _______
+#### SuppFig3: Transcription factor footprinting and TFBS analysis in monocytes.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `ATAC_TF_analysis/ATAC_footprinting.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `ATAC_TF_analysis/maxATAC/ATAC_ADvsHC_Monocytes_32bp_barplot_wholegenome.R`  
 
-### SuppFig4: _______
+#### SuppFig4: APOE genotype-dependent dysregulation of clonally expanded T cells in AD.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `ATAC_DA/ATAC_DAR_AD_risk_gene_overlap.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `TCR_analysis/umap-clonal.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: `TCR_analysis/tcr-clonal_DE_ADvsHC_within_APOE_genotype.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D: `RNA_DE/volcano.R`  
 
-### SuppFig5: _______
+#### SuppFig5: Clonally expanded CD8+ TCM cells are transcriptionally altered in AD.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `RNA_DE/RNA_DEG_APOE_heatmap.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B: `RNA_DE/volcano.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C: `TCR_analysis/tcr-clonal_DE_APOEvsAPOE.R`   
