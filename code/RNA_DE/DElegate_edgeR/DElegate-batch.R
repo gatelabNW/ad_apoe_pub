@@ -48,9 +48,9 @@ comparison <- opt$comparison
 print(comparison)
 
 # Organize inputs
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/celltype_color_map.csv"
-seurat_object <- "/projects/b1169/projects/AD_APOE/results/seurat/supervised_clustering/out_NP_09-07-2022/s_sup_clustering"
-output_dir <- paste0("/projects/b1169/projects/AD_APOE/results/de/DElegate/out_NP_05-05-2023/", comparison, "/")
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+seurat_object <- "/path/to/RNA/seurat_object"
+output_dir <- paste0("/path/to/output_dir/", comparison, "/")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds
