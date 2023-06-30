@@ -25,8 +25,8 @@ suppressMessages({
 })
 
 # Organize inputs
-de_base_dir <- "/projects/b1169/projects/AD_APOE/results/"
-output_base_dir <- "/projects/b1169/projects/AD_APOE/results/de/MAST_edgeR/out_NP_05-19-2023/"
+de_base_dir <- "/path/to/DE/results"
+output_base_dir <- "/path/to/output_dir/"
 dir.create(output_base_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define comparison of interests
@@ -42,52 +42,6 @@ output_dir <- paste0(output_base_dir, comparison, "/", "padj", as.character(padj
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 dir.create(paste0(output_base_dir, "full_intersection"), showWarnings = FALSE)
 
-# #-------------------------------------------------------------------------------
-# # Identify cell types to remove
-# #-------------------------------------------------------------------------------
-# 
-# rna_seurat_object <-"/projects/b1169/projects/AD_APOE/results/seurat/supervised_clustering/out_NP_09-07-2022/s_sup_clustering"
-# load(rna_seurat_object)
-# 
-# s@meta.data$E4_carrier <- mapvalues(s@meta.data$APOE_genotype,
-#                                     from = c("E3/E3", "E3/E4", "E4/E4"),
-#                                     to = c("noncarrier", "carrier", "carrier"))
-# 
-# s@meta.data$Diagnosis_APOE <- paste(s@meta.data$Diagnosis, s@meta.data$APOE_genotype)
-# s@meta.data$Diagnosis_APOE4carrier <- paste(s@meta.data$Diagnosis, s@meta.data$E4_carrier)
-# 
-# diagnosis_freqs <- table(s[[c("predicted.celltype.l2", "Diagnosis")]]) %>% data.frame()
-# apoe_freqs <- table(s[[c("predicted.celltype.l2", "Diagnosis_APOE")]]) %>% data.frame()
-# carrier_freqs <- table(s[[c("predicted.celltype.l2", "Diagnosis_APOE4carrier")]]) %>% data.frame()
-# just_carrier_freqs <- table(s[[c("predicted.celltype.l2", "E4_carrier")]]) %>% data.frame()
-# 
-# if (comparison == "ADvsHC") {
-#   group_1 <- "Healthy Control"
-#   group_2 <- "Alzheimers Disease"
-# 
-#   group_1_celltypes_rm <- diagnosis_freqs[which(diagnosis_freqs$Diagnosis == group_1 & diagnosis_freqs$Freq < 100), "predicted.celltype.l2"]
-#   group_2_celltypes_rm <- diagnosis_freqs[which(diagnosis_freqs$Diagnosis == group_2 & diagnosis_freqs$Freq < 100), "predicted.celltype.l2"]
-# } else if (comparison == "44vs33_") {
-#   # Specify groups
-#   group_1 <- "Healthy Control E4/E4"
-#   group_2 <- "Healthy Control E3/E4"
-# 
-#   # Find celltypes with less than 100 cells in each group
-#   group_1_celltypes_rm <- apoe_freqs[which(apoe_freqs$Diagnosis_APOE == group_1 & apoe_freqs$Freq < 100), "predicted.celltype.l2"]
-#   group_2_celltypes_rm <- apoe_freqs[which(apoe_freqs$Diagnosis_APOE == group_2 & apoe_freqs$Freq < 100), "predicted.celltype.l2"]
-# } else if (comparison == "4carriervs33_AD") {
-#   # Specify groups
-#   group_1 <- "Alzheimers Disease carrier"
-#   group_2 <- "Healthy Control carrier"
-# 
-#   # Find celltypes with less than 100 cells in each group
-#   group_1_celltypes_rm <- carrier_freqs[which(carrier_freqs$Diagnosis_APOE4carrier == group_1 & carrier_freqs$Freq < 100), "predicted.celltype.l2"]
-#   group_2_celltypes_rm <- carrier_freqs[which(carrier_freqs$Diagnosis_APOE4carrier == group_2 & carrier_freqs$Freq < 100), "predicted.celltype.l2"]
-#   # group_1_celltypes_rm <- just_carrier_freqs[which(just_carrier_freqs$E4_carrier == group_1 & just_carrier_freqs$Freq < 100), "predicted.celltype.l2"]
-#   # group_2_celltypes_rm <- just_carrier_freqs[which(just_carrier_freqs$v == group_2 & just_carrier_freqs$Freq < 100), "predicted.celltype.l2"]
-# }
-# celltypes_rm <- cat(union(group_1_celltypes_rm, group_2_celltypes_rm), sep = "', '")
-
 #-------------------------------------------------------------------------------
 # Prep
 #-------------------------------------------------------------------------------
@@ -101,58 +55,29 @@ cell_types <- c("B_intermediate", "B_memory", "B_naive", "Plasmablast",
                 "NK", "NK_Proliferating", "NK_CD56bright",
                 "ILC", "dnT", "gdT")
 
-# Define comparison deg dirs
+# Define celltypes to remove (have less than 100 cells in either comparison group)
 if (comparison == "ADvsHC") {
-  mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'HSPC', 'NK_Proliferating', 'pDC', 'Eryth', 'Plasmablast')
 } else if (comparison == "ADvsHC_33") {
-  mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'cDC2')
 } else if (comparison == "ADvsHC_44") {
-  mast_dir <- paste0(de_base_dir, "de/diagnosis_44/out_NP_09-28-2022_covarSex/")
   celltypes_rm <- c('ASDC', 'CD16_Mono', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet')
 } else if (comparison == "ADvsHC_34") {
-  mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet')
 } else if (comparison == "44vs33_AD") {
-  mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'CD16_Mono', 'cDC2')
 } else if (comparison == "34vs33_AD") {
-  mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet')
 } else if (comparison == "44vs34_AD") {
-  mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'CD16_Mono', 'Platelet')
 } else if (comparison == "44vs33_HC") {
-  mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'cDC2')
 } else if (comparison == "34vs33_HC") {
-  mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet')
 } else if (comparison == "44vs34_HC") {
-  mast_dir <- paste0(de_base_dir, "de/apoe44vs34_hc/out_NP_11-10-2022_covarSex/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'cDC2')
 } 
-# else if (comparison == "ADvsHC_4carrier") {
-#   mast_dir <- paste0(de_base_dir, "diagnosis_4carrier/out_NP_05-01-2023_covarSex/")
-#   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'Doublet', 'Eryth', 'HSPC', 'pDC', 'Plasmablast', 'dnT', 'ILC', 'NK_Proliferating', 'Platelet')
-# } else if (comparison == "4carriervs33_AD") {
-#   mast_dir <- paste0(de_base_dir, "apoe4carriervs33_ad_withEthnicity/out_NP_05-18-2023_covarSex+Race/")
-#   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'Doublet', 'Eryth', 'HSPC', 'pDC', 'Plasmablast', 'dnT', 'ILC', 'NK_Proliferating', 'Platelet')
-# } else if (comparison == "4carriervs33_HC") {
-#   mast_dir <- paste0(de_base_dir, "apoe4carriervs33_hc_withEthnicity/out_NP_05-18-2023_covarSex+Race/")
-#   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'cDC2')
-# } 
-# else if (comparison == "4carriervs33") {
-#   mast_dir <- paste0(de_base_dir, "4carriervs33/out_NP_05-05-2023_covarSexDiagnosis/")
-#   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'Doublet', 'Eryth', 'HSPC')
-# } else if (comparison == "44vs33") {
-#   mast_dir <- paste0(de_base_dir, "44vs33/out_NP_05-05-2023_covarSexDiagnosis/")
-#   celltypes_rm <- c('')
-# } else if (comparison == "34vs33") {
-#   mast_dir <- paste0(de_base_dir, "34vs33/out_NP_05-05-2023_covarSexDiagnosis/")
-#   celltypes_rm <- c('')
-# }
+mast_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
 pseudobulk_dir <- paste0(de_base_dir, "de/DElegate/out_NP_05-05-2023/", comparison, "/")
 
 # Initialize deg lists
