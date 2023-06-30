@@ -24,11 +24,11 @@ suppressMessages({
 })
 
 # Organize inputs
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/celltype_color_map.csv"
-broad_celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-ranges_path <- "/projects/b1169/projects/AD_APOE/data/ranges/full_ranges.rds"
-base_dir <- "/projects/b1169/projects/AD_APOE/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_de_comparison/overlappedDAR+DEG_allcelltypes_upset/out_NP_05-31-2023/"
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+broad_celltype_colors_path <- "/path/to/broad_celltype_color_map.csv"
+ranges_path <- "/path/to/ranges/object"
+base_dir <- "/path/to/project/root/"
+output_dir <- "/path/to/output_dir"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define comparison of interests
@@ -75,8 +75,8 @@ cell_types <- c("B_intermediate", "B_memory", "B_naive", "Plasmablast",
                 "ILC", "dnT", "gdT")
 
 # Read in intersections
-full_deg_list <- read.csv(paste0(base_dir, "results/de/MAST_edgeR/out_NP_05-19-2023/full_intersection/", comparison, "_padj0.05_lfc0.125_MAST+edgeR_DEGs.csv"))
-full_dar_list <- read.csv(paste0(base_dir, "results_atac/da_broad_celltypes/LR_DESeq2/out_NP_05-22-2023/full_intersection/", comparison, "_padj0.05_lfc0.125_LR+DESeq2_DARs.csv"))
+full_deg_list <- read.csv(paste0(base_dir, "path/to/MAST+edgeR/results", comparison, "_padj0.05_lfc0.125_MAST+edgeR_DEGs.csv"))
+full_dar_list <- read.csv(paste0(base_dir, "path/to/LR+DESeq2/results", comparison, "_padj0.05_lfc0.125_LR+DESeq2_DARs.csv"))
 
 # Read in ranges
 ranges <- readRDS(ranges_path)
@@ -209,8 +209,8 @@ apoe_comparisons <- function(comparison) {
   }
   
   # Read in intersections
-  full_deg_list <<- read.csv(paste0(base_dir, "results/de/MAST_edgeR/out_NP_05-19-2023/full_intersection/", comparison, "_padj0.05_lfc0.125_MAST+edgeR_DEGs.csv"))
-  full_dar_list <<- read.csv(paste0(base_dir, "results_atac/da_broad_celltypes/LR_DESeq2/out_NP_05-22-2023/full_intersection/", comparison, "_padj0.05_lfc0.125_LR+DESeq2_DARs.csv"))
+  full_deg_list <<- read.csv(paste0(base_dir, "path/to/MAST+edgeR/results/", comparison, "_padj0.05_lfc0.125_MAST+edgeR_DEGs.csv"))
+  full_dar_list <<- read.csv(paste0(base_dir, "path/to/LR+DESeq2/results/", comparison, "_padj0.05_lfc0.125_LR+DESeq2_DARs.csv"))
   
   # Calculate overlaps
   res <- lapply(cell_types, grab_overlaps)
