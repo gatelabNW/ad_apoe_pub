@@ -24,9 +24,9 @@ suppressMessages({
 })
 
 # Organize inputs
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/celltype_color_map.csv"
-de_base_dir <- "/projects/b1169/projects/AD_APOE/results/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results/de/MAST_edgeR_allcelltypes_upset/out_NP_05-24-2023/"
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+de_base_dir <- "/path/to/DE/results/"
+output_dir <- "/path/to/output_dir"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define comparison of interests
@@ -49,38 +49,29 @@ cell_types <- c("B_intermediate", "B_memory", "B_naive", "Plasmablast",
                 "NK", "NK_Proliferating", "NK_CD56bright",
                 "ILC", "dnT", "gdT")
 
-# Define comparison deg dirs
+# Define celltypes to remove (have less than 100 cells in either comparison group)
 if (comparison == "ADvsHC") {
-  MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'HSPC', 'NK_Proliferating', 'pDC', 'Eryth', 'Plasmablast')
 } else if (comparison == "ADvsHC_33") {
-  MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'cDC2')
 } else if (comparison == "ADvsHC_44") {
-  MAST_dir <- paste0(de_base_dir, "de/diagnosis_44/out_NP_09-28-2022_covarSex/")
   celltypes_rm <- c('ASDC', 'CD16_Mono', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet')
 } else if (comparison == "ADvsHC_34") {
-  MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet')
 } else if (comparison == "44vs33_AD") {
-  MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'CD16_Mono', 'cDC2')
 } else if (comparison == "34vs33_AD") {
-  MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet')
 } else if (comparison == "44vs34_AD") {
-  MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'CD16_Mono', 'Platelet')
 } else if (comparison == "44vs33_HC") {
-  MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'cDC2')
 } else if (comparison == "34vs33_HC") {
-  MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'cDC2', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet')
 } else if (comparison == "44vs34_HC") {
-  MAST_dir <- paste0(de_base_dir, "de/apoe44vs34_hc/out_NP_11-10-2022_covarSex/")
   celltypes_rm <- c('ASDC', 'CD4_Proliferating', 'CD8_Proliferating', 'dnT', 'Doublet', 'Eryth', 'HSPC', 'ILC', 'NK_Proliferating', 'pDC', 'Plasmablast', 'Platelet', 'cDC2')
 } 
+MAST_dir <- paste0(de_base_dir, "MAST_withEthnicity/out_NP_05-22-2022/", comparison, "/")
 pseudobulk_dir <- paste0(de_base_dir, "de/DElegate/out_NP_05-05-2023/", comparison, "/")
 
 # Initialize deg lists
