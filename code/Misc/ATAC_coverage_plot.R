@@ -24,7 +24,7 @@ suppressMessages({
 })
 
 # set output directory
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/figures/coverageplot/out_AR_05-25-2023/"
+output_dir <- "/path/to/output_dir/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 #-------------------------------------------------------------------------------
@@ -48,9 +48,9 @@ group <- "Diagnosis"
 custom_cov_plot <- function(celltype, gene, range_oi, apoe, group) {
   # read in seurat object
   if (celltype == "CD4+_T_Cells") {
-    s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/cd4_s_TFIDF.rds"))
+    s <- readRDS(paste0("/path/to/cd4/seurat_object"))
   } else {
-    s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/noncd4_s_TFIDF.rds"))
+    s <- readRDS(paste0("/path/to/noncd4/seurat_object"))
   }
   
   # Map broad celltypes to object
