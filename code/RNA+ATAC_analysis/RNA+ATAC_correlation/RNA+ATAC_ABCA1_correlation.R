@@ -31,9 +31,9 @@ atac_cell_type <- "Monocytes"
 rna_cell_type <- "CD14 Mono"
 
 # Organize inputs
-rna_seurat_object <-"/projects/b1169/projects/AD_APOE/results/seurat/supervised_clustering/out_NP_09-07-2022/s_sup_clustering"
-cicero_dir <- "/projects/b1169/projects/AD_APOE/results_atac/cicero/batch/out_NP_02-20-2023/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/expression_accessibility_correlation/ABCA1_exp_acc_corr/out_NP_06-08-2023/"
+rna_seurat_object <-"/path/to/RNA/seurat_object"
+cicero_dir <- "/path/to/cicero/results/"
+output_dir <- "/path/to/output_dir/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 #-------------------------------------------------------------------------------
@@ -47,9 +47,9 @@ load(rna_seurat_object)
 s <- subset(s, predicted.celltype.l2 == rna_cell_type)
 
 if (atac_cell_type == "CD4+_T_Cells") {
-  atac_s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/cd4_s_TFIDF.rds"))
+  atac_s <- readRDS(paste0("/path/to/ATAC/cd4/seurat_object"))
 } else {
-  atac_s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/noncd4_s_TFIDF.rds"))
+  atac_s <- readRDS(paste0("/path/to/ATAC/noncd4/seurat_object"))
 }
 
 # Add broad cell types
