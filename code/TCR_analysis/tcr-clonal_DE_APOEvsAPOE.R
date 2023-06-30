@@ -27,7 +27,7 @@ suppressMessages({
   library("UpSetR")
 })
 # Load seurat object
-s <- "/projects/b1169/projects/AD_APOE/results/tcr/preprocessing/out_2022_10_03_AR/s_tcrclean"
+s <- "/path/to/RNA/seurat_object"
 load(s)
 
 # Run standard normalization
