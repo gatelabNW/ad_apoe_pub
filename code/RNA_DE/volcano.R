@@ -23,8 +23,8 @@ suppressMessages({
 })
 
 # Organize inputs
-base_dir <- "/projects/b1169/projects/AD_APOE/results/"
-output_base_dir <- "/projects/b1169/projects/AD_APOE/results/de/volcano_with_pseudobulk/out_NP_05-31-2023/"
+base_dir <- "/path/to/results/base_dir"
+output_base_dir <- "/path/to/output_dir/"
 
 # Define thresholds
 padj.thresh <- 0.05
