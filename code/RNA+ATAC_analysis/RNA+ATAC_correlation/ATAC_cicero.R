@@ -62,7 +62,7 @@ print(geno)
 print(cell_type)
 
 # Organize inputs
-output_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/cicero/batch/out_NP_02-20-2023/"
+output_base_dir <- "/path/to/output_dir/"
 dir.create(output_base_dir, showWarnings = FALSE, recursive = TRUE)
 
 #-------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 # Load in seurat object
 print("Loading and formatting seurat object...")
 if (cell_type == "CD4+_T_Cells") {
-  s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/cd4_s_TFIDF.rds"))
+  s <- readRDS(paste0("/path/to/cd4/seurat_object"))
   
   # Read in UMAP and add
   # s <- readRDS("/projects/b1169/projects/AD_APOE/results/archr/manual_outs/to_signac/2022_11_29_NP/cd4_s_withUMAP.rds")
@@ -92,7 +92,7 @@ if (cell_type == "CD4+_T_Cells") {
   umap <- readRDS(paste0(output_base_dir, "cd4_umap.rds"))
   s@reductions$umap <- umap
 } else {
-  s <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/noncd4_s_TFIDF.rds"))
+  s <- readRDS(paste0("/path/to/noncd4/seurat_object"))
   
   # Read in UMAP and add
   # s <- readRDS("/projects/b1169/projects/AD_APOE/results/archr/manual_outs/to_signac/2022_11_29_NP/noncd4_s_withUMAP.rds")
@@ -136,24 +136,8 @@ count_matrix <- count_matrix[rowSums(count_matrix) > 0,]
 s <- subset(s, features = rownames(count_matrix))
 s
 
-# # Make CDS with SeuratWrappers
-# # 6.8 GB
-# # contains raw and norm counts
+# Make CDS with SeuratWrappers
 cds <- SeuratWrappers::as.cell_data_set(x = s)
-
-# Make CDS with Monocle3
-# 3.5 GB
-# Contains only raw counts
-# print("Generating cds...")
-# genes <- data.frame(as.character(rownames(count_matrix)))
-# rownames(genes) <- rownames(count_matrix)
-# genes <- as.data.frame(cbind(genes,genes))
-# colnames(genes) <- c("GeneSymbol", "gene_short_name")
-# cds <- new_cell_data_set(
-#   count_matrix,
-#   cell_metadata=s@meta.data,
-#   gene_metadata=genes
-# )
 
 # Make Cicero CDS
 cicero <- make_cicero_cds(cds,
