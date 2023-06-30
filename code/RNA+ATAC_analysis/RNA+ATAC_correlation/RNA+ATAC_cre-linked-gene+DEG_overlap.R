@@ -25,14 +25,14 @@ suppressMessages({
 })
 
 # Organize inputs
-ranges_path <- "/projects/b1169/projects/AD_APOE/data/ranges/full_ranges.rds"
-de_dir <- "/projects/b1169/projects/AD_APOE/results/de/diagnosis_withEthnicity/out_NP_05-18-2023_covarSex+APOE+Race//"
-da_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/main/out_NP_02-06-2023/ADvsHC/"
-da_intersection_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/LR_DESeq2/out_NP_05-08-2023/full_intersection/"
-de_intersection_dir <- "/projects/b1169/projects/AD_APOE/results/de/MAST_edgeR/out_NP_05-19-2023/full_intersection/"
-cicero_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/cicero/batch/out_NP_02-20-2023/"
-input_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/expression_accessibility_correlation/batch/out_NP_03-15-2023/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/expression_accessibility_correlation/dar_deg_comparison/out_NP_05-19-2023/"
+de_dir <- "/path/to/MAST/results/"
+da_dir <- "/path/to/LR/results"
+da_intersection_dir <- "/path/to/LR+DESeq2/results/"
+de_intersection_dir <- "/path/to/MAST+edgeR/results/"
+ranges_path <- "/path/to/ranges/object"
+cicero_base_dir <- "/path/to/cicero/results"
+input_base_dir <- "/path/to/RNA+ATAC/correlation/results/"
+output_dir <- "/path/to/output_dir"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 #-------------------------------------------------------------------------------
@@ -40,10 +40,6 @@ dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 #-------------------------------------------------------------------------------
 
 # Define cell type comparisons
-# comparisons <- c("CD8+_T_Cells-CD8_TCM",
-#                  "B_Cells-B_naive",
-#                  "Monocytes-CD14_Mono",
-#                  "Monocytes-CD16_Mono")
 comparisons <- list.dirs(input_base_dir, full.names = FALSE)[-c(1)]
 
 # Define diagnoses
