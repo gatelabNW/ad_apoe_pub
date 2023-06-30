@@ -27,9 +27,9 @@ suppressMessages({
 })
 
 # Organize inputs
-ranges_path <- "/projects/b1169/projects/AD_APOE/data/ranges/full_ranges.rds"
-input_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/cicero/batch/out_NP_02-20-2023/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/cicero/summary/out_NP_02-22-2023/"
+ranges_path <- "/path/to/ranges/object"
+input_base_dir <- "/path/to/cicero/results"
+output_dir <- "/path/to/output_dir/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 #-------------------------------------------------------------------------------
@@ -40,7 +40,7 @@ dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 ranges <- readRDS(ranges_path)
 
 # Load in STAR gene data
-ref_path <- "/projects/b1169/projects/AD_APOE/data/ensembl/Homo_sapiens.GRCh38.109.chr.gtf.gz"
+ref_path <- "/path/to/ensembl/Homo_sapiens.GRCh38.109.chr.gtf.gz"
 gene_anno <- rtracklayer::readGFF(ref_path)
 
 # rename some columns to match plotting requirements
