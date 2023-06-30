@@ -29,9 +29,9 @@ suppressMessages({
 })
 
 # Organize inputs
-res_dir <- "/projects/b1169/projects/AD_APOE/results_atac/maxatac/peaks/out_NP_04-25-2023/"
-noncd4_seurat_object <- "/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/noncd4_s_TFIDF.rds"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/maxatac/NFKB2/out_NP_06-07-2023/"
+res_dir <- "/path/to/maxatac/peaks/results"
+noncd4_seurat_object <- "/path/to/noncd4/seurat_object"
+output_dir <- "/path/to/output_dir"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define comparisons of interest
@@ -52,7 +52,7 @@ coordinates <- "chr10-102394110-102402524" # from UCSC site https://genome.ucsc.
 txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
 
 # Define list of TFs
-tfs <- list.dirs("/home/ncp2306/opt/maxatac/data/models", full.names = FALSE)[2:128]
+tfs <- list.dirs("/path/to/maxatac/models", full.names = FALSE)[2:128]
 
 # Define function to divide res into 32bp intervals
 extract_intervals <- function(row) {
