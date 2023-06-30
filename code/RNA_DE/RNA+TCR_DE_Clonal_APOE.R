@@ -13,11 +13,11 @@
 # 
 # ------------------------------------------------------------------------------
 # Create output directory
-output_dir <- "/projects/b1169/projects/AD_APOE/results/tcr/clonality/out_2022_11_8_AR/"
+output_dir <- "/path/to/output_dir/"
 ifelse(!dir.exists(output_dir),
        dir.create(output_dir, showWarnings = FALSE, recursive = TRUE), FALSE)
-# Source Natalie's helper functions
-source("/projects/p31535/abhi/AD_APOE/code/_lib/helper_functions.R")
+
+celltype_colors_path <- "path/to/celltype_color_map"
 
 # # Install packages 
 # BiocManager::install("MAST")
@@ -30,7 +30,7 @@ suppressMessages({
   library("UpSetR")
 })
 # Load seurat object
-s <- "/projects/b1169/projects/AD_APOE/results/tcr/preprocessing/out_2022_10_03_AR/s_tcrclean"
+s <- "/path/to/RNA/seurat_object"
 load(s)
 
 # Set number of cores for parallel processing
@@ -201,7 +201,6 @@ for (key in names(sig_genes_ls)) {
 }
 
 # Get colors
-celltype_colors_path <- "/projects/b1169/nat/als/resources/metadata/cluster-metadata.csv"
 celltype_colors <- read.csv(celltype_colors_path)
 celltype_colors[which(celltype_colors$predicted.celltype.l2 == "NK CD56bright"), "predicted.celltype.l2"] <- "NK_CD56bright"
 
@@ -255,7 +254,6 @@ for (key in names(sig_genes_ls)) {
 }
 
 # Get colors
-celltype_colors_path <- "/projects/b1169/nat/als/resources/metadata/cluster-metadata.csv"
 celltype_colors <- read.csv(celltype_colors_path)
 celltype_colors[which(celltype_colors$predicted.celltype.l2 == "NK CD56bright"), "predicted.celltype.l2"] <- "NK_CD56bright"
 
@@ -307,7 +305,6 @@ for (key in names(sig_genes_ls)) {
 }
 
 # Get colors
-celltype_colors_path <- "/projects/b1169/nat/als/resources/metadata/cluster-metadata.csv"
 celltype_colors <- read.csv(celltype_colors_path)
 celltype_colors[which(celltype_colors$predicted.celltype.l2 == "NK CD56bright"), "predicted.celltype.l2"] <- "NK_CD56bright"
 
@@ -359,7 +356,6 @@ for (key in names(sig_genes_ls)) {
 }
 
 # Get colors
-celltype_colors_path <- "/projects/b1169/nat/als/resources/metadata/cluster-metadata.csv"
 celltype_colors <- read.csv(celltype_colors_path)
 celltype_colors[which(celltype_colors$predicted.celltype.l2 == "NK CD56bright"), "predicted.celltype.l2"] <- "NK_CD56bright"
 
