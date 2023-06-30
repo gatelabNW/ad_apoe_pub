@@ -9,7 +9,7 @@
 #
 # Date: 05-02-2023
 # Written by: Natalie Piehl
-# Summary: Consolidate DEG lists
+# Summary: Consolidate DAR lists
 #
 #-------------------------------------------------------------------------------
 # Initialization
@@ -24,10 +24,10 @@ suppressMessages({
 })
 
 # Organize inputs
-da_celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-da_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/"
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/LR_DESeq2_allcelltypes_upset/out_NP_05-24-2023/"
+da_celltype_colors_path <- "/path/to/broad_celltype_color_map.csv"
+da_base_dir <- "path/to/DA/results/"
+celltype_colors_path <- "/path/to/fine_celltype_color_map.csv"
+output_dir <- "/path/to/output/dir/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define comparison of interests
@@ -46,11 +46,7 @@ cell_types <- c("B_Cells", "Monocytes", "CD4+_T_Cells",
                 "CD8+_T_Cells", "NK_Cells")
 
 # Define comparison deg dirs
-if (comparison %in% c("ADvsHC_44", "44vs34_AD")) {
-  LR_dir <- paste0(da_base_dir, "main/out_NP_02-06-2023/", comparison, "/")
-} else {
-  LR_dir <- paste0("/projects/b1169/projects/AD_APOE/results_atac/LR_withEthnicity/out_NP_05-22-2023/", comparison, "/")
-}
+LR_dir <- paste0(da_base_dir, "main/out_NP_02-06-2023/", comparison, "/")
 pseudobulk_dir <- paste0(da_base_dir, "DElegate/out_NP_05-05-2023/", comparison, "/")
 
 # Initialize deg lists
