@@ -24,9 +24,9 @@ suppressMessages({
 })
 
 # Organize inputs
-da_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/"
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/broad_celltype_color_map.csv"
-output_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/LR_DESeq2/out_NP_05-22-202/"
+da_base_dir <- "/path/to/DA/results/"
+celltype_colors_path <- "/path/to/celltype_color_map"
+output_base_dir <- "/path/to/output_dir/"
 dir.create(output_base_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define comparison of interests
@@ -51,11 +51,7 @@ cell_types <- c("B_Cells", "Monocytes", "Dendritic_Cells", "CD4+_T_Cells",
                 "CD8+_T_Cells", "NK_Cells", "Other_T_Cells", "Other")
 
 # Define comparison deg dirs
-if (comparison %in% c("ADvsHC_44", "44vs34_AD")) {
-  LR_dir <- paste0(da_base_dir, "main/out_NP_02-06-2023/", comparison, "/")
-} else {
-  LR_dir <- paste0("/projects/b1169/projects/AD_APOE/results_atac/LR_withEthnicity/out_NP_05-22-2023/", comparison, "/")
-}
+LR_dir <- paste0(da_base_dir, "main/out_NP_02-06-2023/", comparison, "/")
 pseudobulk_dir <- paste0(da_base_dir, "DElegate/out_NP_05-05-2023/", comparison, "/")
 
 # Initialize deg lists
