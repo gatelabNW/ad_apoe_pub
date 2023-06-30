@@ -24,26 +24,17 @@ suppressMessages({
 })
 
 # Organize inputs
-ranges_path <- "/projects/b1169/projects/AD_APOE/data/ranges/full_ranges.rds"
-cicero_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/cicero/batch/out_NP_02-20-2023/"
-input_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/expression_accessibility_correlation/batch/out_NP_03-15-2023/"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/expression_accessibility_correlation/summary/out_NP_05-18-2023/"
+ranges_path <- "/path/to/ranges/object"
+cicero_base_dir <- "/path/to/cicero/results"
+input_base_dir <- "/path/to/RNA+ATAC/correlation/results/"
+output_dir <- "/path/to/output_dir"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 #-------------------------------------------------------------------------------
 # Load in results
-# Read in All, HC, and AD for
-# - CD8+_T_Cells-CD8_TCM
-# - B_Cells-B_naive
-# - Monocytes-CD14_Mono
-# - Monocytes-CD16_Mono
 #-------------------------------------------------------------------------------
 
 # Define cell type comparisons
-# comparisons <- c("CD8+_T_Cells-CD8_TCM",
-#                  "B_Cells-B_naive",
-#                  "Monocytes-CD14_Mono",
-#                  "Monocytes-CD16_Mono")
 comparisons <- list.dirs(input_base_dir, full.names = FALSE)[-c(1)]
 
 # Define diagnoses
@@ -130,10 +121,6 @@ p <- ggplot(df, aes(x = abs(R), y = comparison, fill = diagnosis)) +
   scale_y_discrete(expand = c(0,0)) +
   scale_fill_manual(values = c("white", "gray", "red")) +
   theme(text = element_text(size = 20))
-  # geom_segment(data = pcc_df, aes(x = pcc_thresh, xend = pcc_thresh,
-  #                                 y = as.numeric(comparison),
-  #                                 yend = as.numeric(comparison) + .9)) +
-  # scale_color_manual(values = c("white", "gray", "red"))
 p
 
 # Export
@@ -333,14 +320,6 @@ for (diagnosis in c("all", diagnoses[2:3])) {
   set_panel_size(p, file = paste0(output_dir, diagnosis, "_gl-CRE_peak-type_composition.pdf"))
 }
 
-# # Run Chi square on exonic prop CD8 TCM AD vs HC
-# cd8_exon_res <- res[2:3,]
-# cd8_exon_res$non_Exonic <- rowSums(cd8_exon_res[,c(1,3,4)])
-# cd8_exon_res <- cd8_exon_res[,c("Exonic", "non_Exonic")]
-# print(cd8_exon_res)
-# chisq.test(cd8_exon_res$Exonic, cd8_exon_res$non_Exonic)
-# fisher.test(cd8_exon_res$Exonic, cd8_exon_res$non_Exonic)
-
 #-------------------------------------------------------------------------------
 # Visualize
 # - LFC of AD over HC sig correlations
@@ -385,11 +364,3 @@ p
 # Export plot
 set_panel_size(p, file = paste0(output_dir, "num_sig_corr_lfc_heatmap.pdf"),
                width = unit(3, "in"), height = unit(8, "in"))
-
-# # Run Chi square on promoter prop AD vs HC
-# cd8_exon_res <- res[2:3,]
-# cd8_exon_res$non_Exonic <- rowSums(cd8_exon_res[,c(1,3,4)])
-# cd8_exon_res <- cd8_exon_res[,c("Exonic", "non_Exonic")]
-# print(cd8_exon_res)
-# chisq.test(cd8_exon_res$Exonic, cd8_exon_res$non_Exonic)
-# fisher.test(cd8_exon_res$Exonic, cd8_exon_res$non_Exonic)
