@@ -13,11 +13,9 @@
 # 
 # ------------------------------------------------------------------------------
 # Create output directory
-output_dir <- "/projects/b1169/projects/AD_APOE/results/tcr/clonality/out_2022_10_24_AR/"
+output_dir <- "/path/to/output_dir"
 ifelse(!dir.exists(output_dir),
        dir.create(output_dir, showWarnings = FALSE, recursive = TRUE), FALSE)
-# Source Natalie's helper functions
-source("/projects/p31535/abhi/AD_APOE/code/_lib/helper_functions.R")
 
 # # Install packages 
 # BiocManager::install("MAST")
@@ -30,7 +28,7 @@ suppressMessages({
   library("UpSetR")
 })
 # Load seurat object
-s <- "/projects/b1169/projects/AD_APOE/results/tcr/preprocessing/out_2022_10_03_AR/s_tcrclean"
+s <- "/path/to/RNA/seurat_object"
 load(s)
 
 # Set number of cores for parallel processing
