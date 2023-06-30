@@ -27,10 +27,10 @@ suppressMessages({
 })
 
 # Organize inputs
-da_base_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/"
-intersection_dir <- "/projects/b1169/projects/AD_APOE/results_atac/da_broad_celltypes/LR_DESeq2/out_NP_05-22-2023/full_intersection/"
-ranges_path <- "/projects/b1169/projects/AD_APOE/data/ranges/full_ranges.rds"
-output_dir <- "/projects/b1169/projects/AD_APOE/results_atac/ad_risk_genes/dars/out_NP_05-22-2023/"
+da_base_dir <- "/path/to/LR/results/"
+intersection_dir <- "/path/to/LR+DESeq2/intersection"
+ranges_path <- "/path/to/ranges/object"
+output_dir <- "/path/to/output/dir/"
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Set thresholds
@@ -62,11 +62,7 @@ for (comparison in comparisons) {
   shared_dars <- read.csv(paste0(intersection_dir, comparison, "_padj0.05_lfc0.125_LR+DESeq2_DARs.csv"))
   
   # Define comparison deg dirs
-  if (comparison %in% c("ADvsHC_44", "44vs34_AD")) {
-    dar_dir <- paste0(da_base_dir, "main/out_NP_02-06-2023/", comparison, "/")
-  } else {
-    dar_dir <- paste0("/projects/b1169/projects/AD_APOE/results_atac/LR_withEthnicity/out_NP_05-22-2023/", comparison, "/")
-  }
+  dar_dir <- paste0(da_base_dir, comparison, "/")
 
   # Iterate through cell types
   find_risk_gene_dars <- function(cell_type) {
@@ -185,10 +181,10 @@ ranges <- readRDS(ranges_path)
 ranges <- ranges[which(ranges$nearestGene == gene),]
 
 # Load Seurat objects
-cd4_s <- readRDS("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/cd4_s_TFIDF.rds")
+cd4_s <- readRDS("/path/to/cd4/seurat_object")
 cd4_subset <- subset(cd4_s, features = ranges$sitename)
 rm(cd4_s)
-noncd4_s <- readRDS("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/noncd4_s_TFIDF.rds")
+noncd4_s <- readRDS("/path/to/noncd4/seurat_object")
 noncd4_subset <- subset(noncd4_s, features = ranges$sitename)
 rm(noncd4_s)
 s <- merge(cd4_subset, noncd4_subset)
@@ -232,11 +228,7 @@ dev.off()
 shared_dars <- read.csv(paste0(intersection_dir, comparison, "_padj0.05_lfc0.125_LR+DESeq2_DARs.csv"), row.names = 1)
 
 # Define comparison deg dirs
-if (comparison %in% c("ADvsHC_44", "44vs34_AD")) {
-  dar_dir <- paste0(da_base_dir, "main/out_NP_02-06-2023/", comparison, "/")
-} else {
-  dar_dir <- paste0("/projects/b1169/projects/AD_APOE/results_atac/LR_withEthnicity/out_NP_05-22-2023/", comparison, "/")
-}
+dar_dir <- paste0(da_base_dir, "main/out_NP_02-06-2023/", comparison, "/")
 
 # Iterate through cell types
 specific_risk_gene_dars <- function(cell_type) {
