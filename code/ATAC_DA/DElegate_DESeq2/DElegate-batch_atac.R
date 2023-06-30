@@ -49,8 +49,8 @@ comparison <- opt$comparison
 print(comparison)
 
 # Organize inputs
-celltype_colors_path <- "/projects/b1169/projects/AD_APOE/data/color/celltype_color_map.csv"
-output_dir <- paste0("/projects/b1169/projects/AD_APOE/results_atac/da/DElegate/out_NP_05-05-2023/", comparison, "/")
+celltype_colors_path <- "/path/to/celltype_color_map.csv"
+output_dir <- paste0("/path/to/output/dir/", comparison, "/")
 dir.create(output_dir, showWarnings = FALSE, recursive = TRUE)
 
 # Define thresholds
@@ -62,7 +62,7 @@ lfc.thresh <- 0.125
 #-------------------------------------------------------------------------------
 
 # Load in seurat object
-s_atac <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/noncd4_s_TFIDF.rds"))
+s_atac <- readRDS(paste0("/path/to/noncd4/seurat/object"))
 
 # Create new objecta
 meta <- s_atac[[]]
@@ -218,7 +218,7 @@ lapply(cell_types, run_de)
 #-------------------------------------------------------------------------------
 
 # Load in seurat object
-s_atac <- readRDS(paste0("/projects/b1169/projects/AD_APOE/results_atac/conversion/TFIDF_normalization/out_NP_02-06-2023/cd4_s_TFIDF.rds"))
+s_atac <- readRDS(paste0("/path/to/cd4/seurat/object"))
 
 # Create new objecta
 meta <- s_atac[[]]
