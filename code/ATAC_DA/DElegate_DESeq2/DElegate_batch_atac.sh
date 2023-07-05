@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --account p31535
+#SBATCH --account <quest_allocation>
 #SBATCH --partition short
 #SBATCH --job-name DElegate
 #SBATCH --nodes 1
