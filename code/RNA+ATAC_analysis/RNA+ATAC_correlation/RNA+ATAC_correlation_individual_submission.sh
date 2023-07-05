@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --account p31535
+#SBATCH --account <quest_allocation>
 #SBATCH --partition short
 #SBATCH --job-name exp_acc_corr_batch
 #SBATCH --nodes 1
