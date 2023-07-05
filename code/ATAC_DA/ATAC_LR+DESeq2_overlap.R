@@ -9,7 +9,7 @@
 #
 # Date: 05-02-2023
 # Written by: Natalie Piehl
-# Summary: Consolidate DEG lists
+# Summary: Consolidate DAR lists
 #
 #-------------------------------------------------------------------------------
 # Initialization
@@ -54,7 +54,7 @@ cell_types <- c("B_Cells", "Monocytes", "Dendritic_Cells", "CD4+_T_Cells",
 LR_dir <- paste0(da_base_dir, "main/out_NP_02-06-2023/", comparison, "/")
 pseudobulk_dir <- paste0(da_base_dir, "DElegate/out_NP_05-05-2023/", comparison, "/")
 
-# Initialize deg lists
+# Initialize dar lists
 LR_up_list <- list()
 LR_down_list <- list()
 pseudobulk_up_list <- list()
@@ -63,7 +63,7 @@ down_list <- list()
 up_list <- list()
 combined_list <- list()
 
-# Define deg function
+# Define dar function
 grab_dars <- function(cell_type, de_dir, direction) {
   tryCatch({
     # Read in DEGs
@@ -108,11 +108,11 @@ LR_pseudobulk_list <- list()
 #-------------------------------------------------------------------------------
 
 for (cell_type in cell_types) {
-  # Grab LR DEGs
+  # Grab LR DARs
   LR_up_list[[cell_type]] <- grab_dars(cell_type, LR_dir, "up")
   LR_down_list[[cell_type]] <- grab_dars(cell_type, LR_dir, "down")
   
-  # Grab DESeq2 DEGs
+  # Grab DESeq2 DARs
   pseudobulk_up_list[[cell_type]] <- grab_dars(cell_type, pseudobulk_dir, "up")
   pseudobulk_down_list[[cell_type]] <- grab_dars(cell_type, pseudobulk_dir, "down")
 
@@ -130,7 +130,7 @@ for (cell_type in cell_types) {
   down_list[[cell_type]] <- down_list[[cell_type]][ lapply(down_list[[cell_type]], length) > 0 ]
   up_list[[cell_type]] <- up_list[[cell_type]][ lapply(up_list[[cell_type]], length) > 0 ]
 
-  # Up DEGs --------------------------------------------------------------------
+  # Up DARs --------------------------------------------------------------------
   if (length(up_list[[cell_type]]) > 1) {
     tryCatch({
       # Save results
@@ -141,7 +141,7 @@ for (cell_type in cell_types) {
     })
   }
 
-  # Down DEGs ------------------------------------------------------------------
+  # Down DARs ------------------------------------------------------------------
   if (length(down_list[[cell_type]]) > 1) {
     tryCatch({
       # Save results
