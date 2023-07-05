@@ -57,7 +57,7 @@ All scripts in `code` folder.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G: `RNA_DE/volcano.R`   
 
 #### SuppFig1: Quality control metrics for scATACseq data.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `Misc/demographic_plots_optimized.R`  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A: `Misc/demographics/demographic_plots_optimized.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B-E: `ATAC_preprocessing/1-ATAC_archr_preprocessing.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: `ATAC_preprocessing/3-ATAC_archr_label_transfer.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G: `ATAC_preprocessing/1-ATAC_archr_preprocessing.R`    
