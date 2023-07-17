@@ -67,6 +67,6 @@ do
     cell_num=10000
 
     # Run cellranger count script
-    # sbatch batch_cellranger-rna.sh "$id" "$sample_dir" "$sample" "$cell_num" "$output_dir"
+    sbatch batch_cellranger-rna.sh "$id" "$sample_dir" "$sample" "$cell_num" "$output_dir"
     sleep 2
 done
