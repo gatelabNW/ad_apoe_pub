@@ -1,7 +1,9 @@
 # Epigenetic dysregulation in Alzheimer’s disease peripheral immunity
 [Gate Lab at Northwestern University](https://sites.northwestern.edu/gatelab/)
 
-![updated_schematic](https://github.com/gatelabNW/ad_apoe_pub/assets/91904251/8f69bc36-3fc5-44da-b49b-b3c8e395b438)
+![post revision updated schematic](https://github.com/gatelabNW/ad_apoe_pub/assets/91905593/228bccd1-af28-41a2-8fd2-6fc6349ad4d0)
+
+
 
 ## Abstract
 
@@ -66,7 +68,7 @@ All scripts in `code` folder.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B-D: `RNA_preprocessing/2-RNA_seurat_preprocessing.R`   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E: `RNA_preprocessing/1-RNA_soupx.R` (visual made with Prism)   
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;F: `RNA_preprocessing/5-seurat_rna_celltypemarkers_heatmap.R`    
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G: `RNA_preprocessing/3-RNA_integration_dim_reduc.R` + `Misc/revisions/neuron_figures.R` 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G: `RNA_preprocessing/3-RNA_integration_dim_reduc.R` + `Misc/revisions/neuron_figures.R`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I: `Misc/revisions/figures-cell_num_boxplots.R`
 
 #### SuppFig3: Transcription factor footprinting and TFBS analysis in monocytes.
