@@ -3,7 +3,9 @@
 
 ![post revision updated schematic](https://github.com/gatelabNW/ad_apoe_pub/assets/91905593/228bccd1-af28-41a2-8fd2-6fc6349ad4d0)
 
+### Zenodo DOI
 
+10.5281/zenodo.10472192
 
 ## Abstract
 
